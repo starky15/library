@@ -1,7 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import BookEdit from "./BookEdit";
+import BookContext from "../Context/BookContext";
 
 const BookShow = ({book, onDelete, onEdit}) => {
+    const {deleteBookById} = useContext(BookContext);
+
     const [editShow, setEditShow] = useState(false);
 
     const handleEditClick = () => {
@@ -9,12 +12,12 @@ const BookShow = ({book, onDelete, onEdit}) => {
         console.log(editShow)
     }
     const handleDeleteClick = () =>{
-        onDelete(book.id)
+        deleteBookById(book.id)
     }
 
     const handleSave = (id, title) => {
         // This is handling both the tasks now
-        onEdit(id, title)
+        // onEdit(id, title)
         setEditShow(false)
     }
     let content = <h3>{book.book}</h3>

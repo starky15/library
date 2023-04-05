@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import {useState} from 'react';
+import BookContext from "../Context/BookContext";
 
 const BookEdit = ({book, onSave}) => {
+    const {editBookById} = useContext(BookContext);
 
     const [currentTitle, setCurrentTitle] = useState(book.book)
     
@@ -18,7 +20,8 @@ const BookEdit = ({book, onSave}) => {
         //onSave(false) // Wrong way
 
         // correct way is to pass onEdit data to a handler in book show, which will handle both the tasks
-        onSave(book.id, currentTitle)
+        onSave()
+        editBookById(book.id, currentTitle)
     }
 
     return(
